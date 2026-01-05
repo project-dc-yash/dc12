@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KME Electric - AI Reports</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --sidebar: #1e293b;
+            --accent: #00d4ff;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --text: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background: var(--sidebar);
+            padding: 20px;
+            border-right: 1px solid #334155;
+        }
+
+        .sidebar h2 {
+            color: var(--accent);
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #94a3b8;
+            padding: 12px 15px;
+            margin: 8px 0;
+            display: block;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #334155;
+            color: var(--accent);
+        }
+
+        .sidebar a.active {
+            background: var(--accent);
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        /* Report Table */
+        .report-card {
+            background: var(--sidebar);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            text-align: left;
+            background: #0f172a;
+            padding: 15px;
+            color: var(--accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #334155;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Status Badges */
+        .badge {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .critical { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+        .moderate { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+        .low { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+
+        /* Action Buttons */
+        .btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #00b8e6;
+            transform: translateY(-1px);
+        }
+
+        .export-btn {
+            background: transparent;
+            border: 1px solid #334155;
+            color: white;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>KME ELECTRIC</h2>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="transmission.html">Transmission Lines</a></li>
+            <li><a href="substation.html">Substation Monitor</a></li>
+            <li><a href="thermal.html">Thermal Analysis</a></li>
+            <li><a href="reports.html" class="active">AI Reports</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="header-actions">
+            <div>
+                <h1 style="margin:0;">AI Inspection Reports</h1>
+                <p style="color: #94a3b8; margin: 0;">Consolidated Fault Detection Logs</p>
+            </div>
+            <div>
+                <button class="btn" onclick="window.print()">Print Report</button>
+                <button class="btn export-btn">Export CSV</button>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Report ID</th>
+                        <th>Asset Name</th>
+                        <th>Fault Type</th>
+                        <th>AI Confidence</th>
+                        <th>Priority</th>
+                        <th>Date Detected</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#RPT-0982</td>
+                        <td>Tower HV-104</td>
+                        <td>Corrosion (Phase A)</td>
+                        <td>98.4%</td>
+                        <td><span class="badge low">Low</span></td>
+                        <td>2026-01-05</td>
+                    </tr>
+                    <tr>
+                        <td>#RPT-0985</td>
+                        <td>Transformer T-04</td>
+                        <td>High Temp Anomaly</td>
+                        <td>91.2%</td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td>2026-01-05</td>
+                    </tr>
+                    <tr>
+                        <td>#RPT-0989</td>
+                        <td>Insulator String B</td>
+                        <td>Hairline Fracture</td>
+                        <td>88.5%</td>
+                        <td><span class="badge moderate">Moderate</span></td>
+                        <td>2026-01-04</td>
+                    </tr>
+                    <tr>
+                        <td>#RPT-0991</td>
+                        <td>Substation Busbar</td>
+                        <td>Vegetation Encroachment</td>
+                        <td>95.0%</td>
+                        <td><span class="badge moderate">Moderate</span></td>
+                        <td>2026-01-04</td>
+                    </tr>
+                    <tr>
+                        <td>#RPT-0994</td>
+                        <td>Switchgear B-12</td>
+                        <td>SF6 Pressure Leak</td>
+                        <td>99.1%</td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td>2026-01-03</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="report-card" style="border-left: 4px solid var(--accent);">
+                <h3>AI Summary Statistics</h3>
+                <p>Total Assets Scanned: <strong>1,240</strong></p>
+                <p>Faults Identified: <strong style="color: var(--danger);">05</strong></p>
+                <p>Accuracy Rate: <strong style="color: var(--success);">99.4%</strong></p>
+            </div>
+            <div class="report-card" style="border-left: 4px solid var(--warning);">
+                <h3>Maintenance Schedule</h3>
+                <p>Next Priority Action: <strong>Repair Transformer T-04</strong></p>
+                <p>Estimated Crew Time: <strong>4.5 Hours</strong></p>
+                <p>Assigned Team: <strong>KME Unit-Delta</strong></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Settings | Drainage Cleaning Robot</title>
+
+<style>
+/* ========== GLOBAL ========== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* ========== NAVBAR ========== */
+.navbar{
+  height:60px;
+  background:#0b3c5d;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+}
+
+.status{
+  color:#00ff88;
+  font-weight:bold;
+}
+
+/* ========== LAYOUT ========== */
+.container{
+  display:flex;
+  height:calc(100vh - 60px);
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar{
+  width:220px;
+  background:#1c1c1c;
+  color:white;
+  padding:20px;
+}
+
+.sidebar h3{
+  margin-bottom:15px;
+}
+
+.sidebar ul{
+  list-style:none;
+}
+
+.sidebar ul li{
+  padding:10px 0;
+  border-bottom:1px solid #333;
+}
+
+.sidebar ul li a{
+  color:white;
+  text-decoration:none;
+  display:block;
+}
+
+.sidebar ul li a:hover{
+  color:#00e5ff;
+  padding-left:5px;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main{
+  flex:1;
+  background:#f4f6f8;
+  padding:30px;
+  overflow:auto;
+}
+
+.main h1{
+  color:#0b3c5d;
+  margin-bottom:25px;
+}
+
+/* ========== SETTINGS CARD ========== */
+.settings-card{
+  background:white;
+  padding:20px;
+  margin-bottom:25px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.settings-card h2{
+  margin-bottom:15px;
+  color:#333;
+}
+
+/* ========== SETTING ROW ========== */
+.setting-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+}
+
+.setting-row:last-child{
+  border-bottom:none;
+}
+
+.setting-row label{
+  font-weight:bold;
+}
+
+/* ========== TOGGLE ========== */
+.toggle{
+  padding:5px 15px;
+  border-radius:20px;
+  color:white;
+  font-size:14px;
+}
+
+.on{ background:#28a745; }
+.off{ background:#dc3545; }
+
+/* ========== SPEED BOX ========== */
+.speed-box{
+  display:flex;
+  gap:10px;
+}
+
+.speed-box span{
+  padding:6px 14px;
+  border-radius:15px;
+  background:#ddd;
+  font-size:14px;
+}
+
+.speed-box .active{
+  background:#007bff;
+  color:white;
+}
+</style>
+
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+  <h2>Drainage Cleaning Robot</h2>
+  <span class="status">⚙ Settings</span>
+</div>
+
+<div class="container">
+
+<!-- ===== SIDEBAR ===== -->
+<div class="sidebar">
+  <h3>Dashboard</h3>
+  <ul>
+    <li><a href="home.html">Dashboard</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="settings.html">⚙ Settings</a></li>
+    <li><a href="about.html">ℹ About</a></li>
+    <li><a href="history.html">🕒 History</a></li>
+    <li><a href="robot-status.html">🤖 Robot Status</a></li>
+    <li><a href="battery.html">🔋 Battery Level</a></li>
+    <li><a href="sensor.html">📡 Sensor Data</a></li>
+    <li><a href="camera.html">📷 Live Camera</a></li>
+  </ul>
+</div>
+
+<!-- ===== MAIN SETTINGS ===== -->
+<div class="main">
+
+<h1>⚙ System Settings</h1>
+
+<!-- CAMERA SETTINGS -->
+<div class="settings-card">
+  <h2>📷 Camera Settings</h2>
+
+  <div class="setting-row">
+    <label>Camera Power</label>
+    <span class="toggle on">ON</span>
+  </div>
+
+  <div class="setting-row">
+    <label>Camera Mode</label>
+    <span>Live Stream</span>
+  </div>
+
+  <div class="setting-row">
+    <label>Resolution</label>
+    <span>1280 × 720 (HD)</span>
+  </div>
+
+  <div class="setting-row">
+    <label>Night Vision</label>
+    <span class="toggle off">OFF</span>
+  </div>
+</div>
+
+<!-- MOTOR SETTINGS -->
+<div class="settings-card">
+  <h2>⚙ Motor Control</h2>
+
+  <div class="setting-row">
+    <label>Motor Power</label>
+    <span class="toggle on">ON</span>
+  </div>
+
+  <div class="setting-row">
+    <label>Movement</label>
+    <span>Forward / Reverse</span>
+  </div>
+
+  <div class="setting-row">
+    <label>Motor Speed</label>
+    <div class="speed-box">
+      <span>Low</span>
+      <span class="active">Medium</span>
+      <span>High</span>
+    </div>
+  </div>
+
+  <div class="setting-row">
+    <label>Cleaning Brush</label>
+    <span class="toggle on">ACTIVE</span>
+  </div>
+</div>
+
+<!-- SYSTEM SETTINGS -->
+<div class="settings-card">
+  <h2>🔧 System Configuration</h2>
+
+  <div class="setting-row">
+    <label>Controller</label>
+    <span>Raspberry Pi</span>
+  </div>
+
+  <div class="setting-row">
+    <label>Network</label>
+    <span>Wi-Fi Connected</span>
+  </div>
+
+  <div class="setting-row">
+    <label>Data Logging</label>
+    <span class="toggle on">ENABLED</span>
+  </div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

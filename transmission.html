@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KME Electric - Transmission Lines</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --sidebar: #1e293b;
+            --accent: #00d4ff;
+            --danger: #ff4d4d;
+            --success: #2ecc71;
+            --text: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        /* Sidebar Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background: var(--sidebar);
+            padding: 20px;
+            border-right: 1px solid #334155;
+        }
+
+        .sidebar h2 {
+            color: var(--accent);
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #94a3b8;
+            padding: 12px 15px;
+            margin: 8px 0;
+            display: block;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #334155;
+            color: var(--accent);
+        }
+
+        .sidebar a.active {
+            background: var(--accent);
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Grid Layout */
+        .inspection-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        /* Drone View Window */
+        .drone-monitor {
+            background: #000;
+            height: 450px;
+            border-radius: 15px;
+            position: relative;
+            border: 2px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* AI Bounding Box */
+        .ai-detect {
+            position: absolute;
+            top: 25%;
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            border: 2px solid var(--danger);
+            animation: blink 1s infinite;
+        }
+
+        .ai-label {
+            position: absolute;
+            top: -25px;
+            background: var(--danger);
+            color: white;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+
+        /* Telemetry HUD */
+        .hud {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        /* Tower Status List */
+        .tower-list {
+            background: var(--sidebar);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .tower-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #334155;
+            font-size: 14px;
+        }
+
+        .status-pill {
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .good { background: rgba(46, 204, 113, 0.2); color: var(--success); }
+        .alert { background: rgba(255, 77, 77, 0.2); color: var(--danger); }
+
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>KME ELECTRIC</h2>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="transmission.html" class="active">Transmission Lines</a></li>
+            <li><a href="substation.html">Substation Monitor</a></li>
+            <li><a href="thermal.html">Thermal Analysis</a></li>
+            <li><a href="reports.html">AI Reports</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <h1>Transmission Line AI Scan</h1>
+                <p style="color: #94a3b8; margin: 0;">Scanning Line: North-Grid 400kV</p>
+            </div>
+            <button style="background: var(--accent); border:none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer;">
+                Deploy New Drone
+            </button>
+        </div>
+
+        <div class="inspection-grid">
+            <div class="drone-monitor">
+                <div class="hud">
+                    ALT: 112m <br>
+                    SPD: 5.2 m/s <br>
+                    GPS: 19.07 N, 72.87 E <br>
+                    BAT: 74%
+                </div>
+
+                <div class="ai-detect">
+                    <span class="ai-label">DAMAGED INSULATOR - 91% Confidence</span>
+                </div>
+
+                <p style="color: #334155; font-weight: bold; font-size: 1.2rem;">LIVE CAMERA FEED: TOWER #108</p>
+            </div>
+
+            <div class="tower-list">
+                <h3 style="margin-top: 0;">Asset Status Log</h3>
+                <div class="tower-item">
+                    <span>Tower #106</span>
+                    <span class="status-pill good">HEALTHY</span>
+                </div>
+                <div class="tower-item">
+                    <span>Tower #107</span>
+                    <span class="status-pill good">HEALTHY</span>
+                </div>
+                <div class="tower-item">
+                    <span>Tower #108</span>
+                    <span class="status-pill alert">FAULT DETECTED</span>
+                </div>
+                <div class="tower-item">
+                    <span>Tower #109</span>
+                    <span class="status-pill good">HEALTHY</span>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(0,212,255,0.1); border-radius: 8px;">
+                    <h4 style="margin: 0; color: var(--accent);">AI Recommendation</h4>
+                    <p style="font-size: 13px; margin-bottom: 0;">Schedule maintenance for Tower #108. Vibration sensor indicates loose mounting bolt on Phase A.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

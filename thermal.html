@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KME Electric - Thermal Analysis</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --sidebar: #1e293b;
+            --accent: #f97316; /* Orange for thermal feel */
+            --danger: #ef4444;
+            --cold: #3b82f6;
+            --text: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background: var(--sidebar);
+            padding: 20px;
+            border-right: 1px solid #334155;
+        }
+
+        .sidebar h2 {
+            color: var(--accent);
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #94a3b8;
+            padding: 12px 15px;
+            margin: 8px 0;
+            display: block;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #334155;
+            color: var(--accent);
+        }
+
+        .sidebar a.active {
+            background: var(--accent);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .header {
+            border-bottom: 1px solid #334155;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Thermal Viewport */
+        .thermal-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .thermal-monitor {
+            background: linear-gradient(45deg, #2e026d, #44000b, #9d174d, #f97316, #fbbf24);
+            height: 500px;
+            border-radius: 15px;
+            position: relative;
+            border: 3px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Hotspot Simulation */
+        .hotspot {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffffff 0%, #ffff00 30%, #ff4d00 70%, transparent 100%);
+            border-radius: 50%;
+            top: 30%;
+            left: 55%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .thermal-label {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            border-left: 3px solid var(--accent);
+        }
+
+        /* Temperature Scale Bar */
+        .temp-scale {
+            width: 20px;
+            height: 300px;
+            background: linear-gradient(to top, #3b82f6, #06b6d4, #22c55e, #eab308, #ef4444);
+            position: absolute;
+            left: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* Data Panel */
+        .analysis-panel {
+            background: var(--sidebar);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .stat-box {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tag-danger { color: var(--danger); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>KME ELECTRIC</h2>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="transmission.html">Transmission Lines</a></li>
+            <li><a href="substation.html">Substation Monitor</a></li>
+            <li><a href="thermal.html" class="active">Thermal Analysis</a></li>
+            <li><a href="reports.html">AI Reports</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Infrared Thermal Analysis</h1>
+            <p style="color: #94a3b8; margin: 0;">AI Heat-Mapping | Unit: IR-Drone 09</p>
+        </div>
+
+        <div class="thermal-container">
+            <div class="thermal-monitor">
+                <div class="temp-scale">
+                    <span>80°C</span>
+                    <span>60°C</span>
+                    <span>40°C</span>
+                    <span>20°C</span>
+                    <span>0°C</span>
+                </div>
+
+                <div class="hotspot"></div>
+                
+                <div class="thermal-label">
+                    TARGET: Transformer Bushing <br>
+                    MAX TEMP: <span class="tag-danger">82.4°C</span> <br>
+                    AVG TEMP: 34.2°C
+                </div>
+
+                <h2 style="color:rgba(255,255,255,0.2); pointer-events:none;">IR OVERLAY ACTIVE</h2>
+            </div>
+
+            <div class="analysis-panel">
+                <h3>Anomaly Detection</h3>
+                <div class="stat-box">
+                    <small>Detected Issue:</small>
+                    <div class="tag-danger">Phase C Connector Overheating</div>
+                </div>
+
+                <div class="stat-box">
+                    <small>Delta-T (Temperature Diff):</small>
+                    <div style="font-size: 1.2rem; color: var(--accent);">+48.2°C</div>
+                </div>
+
+                <div style="padding: 10px; border: 1px dashed #444; border-radius: 8px; font-size: 14px;">
+                    <strong>AI Note:</strong> Thermal signature suggests a loose contact or oxidation at the terminal lug. Recommend immediate tightening during next scheduled outage.
+                </div>
+
+                <button style="width:100%; margin-top: 20px; background: var(--accent); border:none; padding:12px; border-radius: 5px; color:white; font-weight:bold; cursor:pointer;">
+                    Capture IR Snapshot
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
